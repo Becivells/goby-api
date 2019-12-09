@@ -71,6 +71,5 @@ pam = GobyApi(proxies=proxies)
 python setup.py sdist
 sudo python setup.py install
 ```
-
 ## 问题
  1. 如果发现查询不到数据请注意查看查询字符串格式**尤其注意引号的规范使用**
