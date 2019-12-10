@@ -52,8 +52,8 @@ headers={
 'User-Agent': 'hack 2.0'
 }
 pam = GobyApi("http://127.0.0.1:8631",headers=headers)
-
 ```
+
 需要注意 `'Content-Type': 'application/json'` 因为 goby 接口原因无法修改
 #### 使用代理  
 ```python
