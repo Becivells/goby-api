@@ -19,13 +19,14 @@
 ## 使用文档
 
 ### 1. 安装模块
+
 下载后在此目录下执行
 ```shell
 python setup.py install
 ```
 ### 2. 使用模块
 
-```python
+```pythonj 
 from goby.v1 import GobyApi
 from goby.v1 import data
 
