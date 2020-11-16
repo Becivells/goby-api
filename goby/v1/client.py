@@ -95,9 +95,9 @@ class Client():
         return self._request.get(url, kwargs)
 
     def startScan(self, ips: list, ports: data.ports, opt_interface: str,
-                  vul_type: data.vul_type = data.vul_type.General_PoC, vul_poc=None, opt_queue=0, opt_random=True,
+                  vul_type: data.vul_type = data.vul_type.General_PoC, pocs_hosts=None, opt_queue=0, opt_random=True,
                   opt_rate=100, opt_portscanmode: data.portscanmode = data.portscanmode.Assets_first,
-                  opt_screenshot=False, opt_extracthost=False, opt_fofaFetchSubdomainEnabled=False, opt_fofaEmail="",
+                  opt_screenshot=False,opt_deepAnalysis=True, opt_extracthost=False, opt_fofaFetchSubdomainEnabled=False, opt_fofaEmail="",
                   opt_fofaKey="", opt_fofaFetchSize=100, opt_pingFirst=False, opt_pingCheckSize=10,
                   opt_pingConcurrent=2, opt_pingSendCount=2, opt_proxy=None,
                   **kwargs) -> dict:
@@ -137,8 +137,8 @@ class Client():
         vul_type = vul_type.value if isinstance(vul_type, Enum) else str(vul_type)
         opt_portscanmode = opt_portscanmode.value if isinstance(opt_portscanmode, Enum) else opt_portscanmode
 
-        if vul_poc is None:
-            vul_poc = []
+        if pocs_hosts is None:
+            pocs_hosts = []
 
         kwargs.update({
             "asset": {
@@ -147,7 +147,7 @@ class Client():
             },
             "vulnerability": {
                 "type": vul_type,
-                "pocs": vul_poc
+                "pocs": pocs_hosts
             },
             "options": {
                 "queue": opt_queue,
@@ -156,6 +156,7 @@ class Client():
                 "interface": opt_interface,
                 "portscanmode": opt_portscanmode,  # 扫描方式
                 "screenshot": opt_screenshot,  # 网站截图
+                "deepAnalysis": opt_deepAnalysis,
                 "extracthost": opt_extracthost,  # 自动爬取子域名
                 "fofaFetchSubdomainEnabled": opt_fofaFetchSubdomainEnabled,  # 开启 fofa 查询
                 "fofaEmail": opt_fofaEmail,  # fofa email
@@ -226,9 +227,10 @@ class Client():
                 "rate": opt_rate,
                 "interface": opt_interface,
                 "portscanmode": opt_portscanmode,
-                "proxy": "socket5://127.0.0.1:1080",
+                "proxy": None,
                 "screenshot": opt_screenshot,
-                "extracthost": opt_extracthost
+                "extracthost": opt_extracthost,
+                "deepAnalysis": True
             }
         })
 

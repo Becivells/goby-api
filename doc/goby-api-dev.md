@@ -1,10 +1,16 @@
 
 
+## 版本
+
+```
+v1.17.160+beta
+```
+
+
+
 ## 认证方式
 
 1. Basic 认证
-
-
 
 
 
@@ -497,11 +503,46 @@ Content-Length: 766
 Authorization: Basic dXNlcjpwYXNz
 Host: 10.10.100.96:8361
 Connection: close
-
-{"asset":{"ips":["10.10.100.0/24"],"ports":"21,22,23,25,53,U:53,80,81,110,111,123,U:123,135,U:137,139,U:161,389,443,445,465,500,515,U:520,U:523,548,623,636,873,902,1080,1099,1433,1521,U:1604,U:1645,U:1701,1883,U:1900,2049,2181,2375,2379,U:2425,3128,3306,3389,4730,U:5060,5222,U:5351,U:5353,5432,5555,5601,5672,U:5683,5900,5938,5984,6000,6379,7001,7077,8080,8081,8443,8545,8686,9000,9042,9092,9100,9200,9418,9999,11211,27017,37777,50000,50070,61616"},"vulnerability":{"type":"0","pocs":[]},"options":{"queue":0,"random":true,"rate":100,"interface":"eth0","portscanmode":0,"screenshot":true,"extracthost":false,"fofaFetchSubdomainEnabled":false,"fofaEmail":"","fofaKey":"","fofaFetchSize":100,"pingFirst":false,"pingCheckSize":10,"pingConcurrent":2,"pingSendCount":2}}
 ````
 
- 
+```json
+{
+  "asset": {
+    "ips": [
+      "10.10.10.0/24"
+    ],
+    "ports": "7"
+  },
+  "vulnerability": {
+    "type": "2",
+    "pocs_hosts": null   //pocs替换为pocs_hosts
+  },
+  "options": {
+    "queue": 0,
+    "random": true,
+    "rate": 100,
+    "portscanmode": 0,
+    "screenshot": true,
+    "deepAnalysis": true,
+    "extracthost": true,
+    "fofaFetchSubdomainEnabled": true,
+    "fofaEmail": "",
+    "fofaKey": "",
+    "fofaFetchSize": 1000,
+    "pingFirst": false,
+    "pingCheckSize": 10,
+    "pingConcurrent": 2,
+    "pingSendCount": 2
+  }
+}
+```
+
+返回值
+```angular2
+
+{"statusCode":200,"messages":"","data":{"taskId":"20200624115501"}}
+```
+
 
 ## /api/v1/assetSearch [asset]
 
@@ -531,13 +572,23 @@ Connection: close
 {"query":"taskId=\"20191107141215\" && ip=\"10.10.200.124\"","options":{"order":{"vulnerabilities":"desc","assets":"desc"},"page":{"size":20}}}
 ```
 
+## /api/v1/getCrawlerURLs
 
+```
+POST /api/v1/getCrawlerURLs HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 72
+Authorization: Basic Og==
+Host: 127.0.0.1:8361
+Connection: close
 
-
+{
+"taskId":"20201024231641",
+"hostInfo":"http://xx.xx.xx.xx:8080"
+}
+```
 
 ## /api/v1/assetDetail
-
-
 
 
 
