@@ -220,3 +220,26 @@ class Asset():
         })
 
         return self._request.post(url, json=kwargs)
+# /api/getCrawlerURLs
+
+    def getCrawlerURLs (self, taskId,hostInfo, **kwargs) -> dict:
+        '''
+        某次扫描任务进度查询
+
+        :param taskId: 任务编号
+        :param hostInfo: 扫描的 url http://xxx.com
+        :param kwargs:
+        :return:
+            statusCode 状态码
+            messages   信息
+            data       返回数据
+        '''
+
+        url = urljoin(self.apiurl, sys._getframe().f_code.co_name)
+
+        kwargs.update({
+            "taskId": taskId,
+            "hostInfo":hostInfo
+        })
+
+        return self._request.post(url, json=kwargs)
